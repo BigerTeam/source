@@ -108,7 +108,6 @@
 
 	<listener>
 		<listener-class>com.source.base.listener.ConfigListener</listener-class>
-		<display-name>configlistener</display-name>
 	</listener>
     <!-- welcome page -->
     <welcome-file-list>
