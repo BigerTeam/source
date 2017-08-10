@@ -14,6 +14,7 @@ public enum SystemError {
     LOGIN_FAILED(200001, "invalid username or password"),//用户名或密码错误
     CAPTCHA_ERROR(200002, "captcha error"),//验证码错误
     ORIGINAL_PASSWORD_ERROR(200003, "invalid original password error")//原始密码错误
+    
     ;
 
     /*状态码*/

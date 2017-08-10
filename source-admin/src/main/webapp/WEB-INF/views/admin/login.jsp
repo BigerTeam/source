@@ -19,7 +19,7 @@
         </div>
         <h3>欢迎使用 source 管理系统</h3>
         <br/>
-<%--         <h4 style="color: red;">${tips!}</h4> --%>
+        <h4 style="color: red;">${tips}</h4>
 
 <%--         <form class="m-t" role="form" action="${ctx}/account/login" method="post"> --%>
             <div class="form-group">
@@ -65,20 +65,14 @@
 //                     captcha: $('#captcha').val().trim()
                 },
                 success: function (data) {
-                	debugger
                     if (data.code == 200) {
                         if (data.body != null) {
-                            U.msg('登录成功');
+                             U.msg("登录成功!");
                             window.location.href = "${ctx}/admin/index";
                         }
-                    } else if (data.code == 200002) {
-                        U.msg('验证码错误');
-                    } else if (data.code == 200001) {
-                        U.msg('用户名或密码错误');
-                    } else if (data.code == 404) {
-                        U.msg('找不到该用户');
-                    } else {
-                        U.msg('服务器异常');
+                    }else{
+                    	 U.msg("登录失败!"+data.message);
+
                     }
                 }
             });

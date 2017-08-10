@@ -147,7 +147,7 @@
 
 
 
-	<select id="getMenusByRoleIds" resultType="com.source.base.node.ZTreeNode">
+	<select id="getMenusByRoleIds" resultType="com.source.base.node.MenuNode">
 		SELECT
 		m1.id AS id,
 		m1.icon AS icon,

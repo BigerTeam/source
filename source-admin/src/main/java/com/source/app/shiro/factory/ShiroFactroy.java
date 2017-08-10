@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.shiro.authc.CredentialsException;
+import org.apache.shiro.authc.DisabledAccountException;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,16 +41,17 @@ public class ShiroFactroy implements IShiro {
 
     @Override
     public User user(String account) {
-
         User user = userService.getUser(account);
-
         // 账号不存在
         if (null == user) {
-            throw new CredentialsException();
+            throw new UnknownAccountException("账号不存在");
         }
         // 账号被冻结
-        if (user.getStatus() != ManagerStatus.OK.getCode()) {
+        if (user.getStatus() == ManagerStatus.FREEZED.getCode()) {
             throw new LockedAccountException();
+        //账号被锁定
+        }else if(user.getStatus() == ManagerStatus.DELETED.getCode()){
+        	throw new DisabledAccountException();
         }
         return user;
     }

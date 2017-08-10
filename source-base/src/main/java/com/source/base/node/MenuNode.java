@@ -5,8 +5,6 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import com.source.base.common.Const;
-
 /**
  * @author fengshuonan
  * @Description 菜单的节点
@@ -58,13 +56,37 @@ public class MenuNode implements Comparable {
      * 子节点的集合
      */
     private List<MenuNode> children;
+    
+    
+    
 
     /**
      * 查询子节点时候的临时集合
      */
     private List<MenuNode> linkedList = new ArrayList<MenuNode>();
+    
+    
+    /**
+     * 是否是外部链接
+     */
+    private Boolean Http;
 
-    public MenuNode() {
+    
+    
+    
+    
+
+	
+	
+	public Boolean getHttp() {
+		return Http;
+	}
+
+	public void setHttp(Boolean http) {
+		Http = http;
+	}
+
+	public MenuNode() {
         super();
     }
 
@@ -300,20 +322,15 @@ public class MenuNode implements Comparable {
             }
         }
 
-        //如果关闭了接口文档,则不显示接口文档菜单
-//        GunsProperties gunsProperties = SpringContextHolder.getBean(GunsProperties.class);
-//        if (!gunsProperties.getSwaggerOpen()) {
-//            List<MenuNode> menuNodesCopy = new ArrayList<>();
-//            for (MenuNode menuNode : menuNodes) {
-//                if (Const.API_MENU_NAME.equals(menuNode.getName())) {
-//                    continue;
-//                } else {
-//                    menuNodesCopy.add(menuNode);
-//                }
-//            }
-//            menuNodes = menuNodesCopy;
-//        }
 
         return menuNodes;
+    }
+    
+    public static boolean changeHttp(String url){
+    	if(url.startsWith("http")){
+    		return true;
+    	}else{
+    		return false;
+    	}
     }
 }

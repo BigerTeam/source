@@ -94,24 +94,46 @@
 			<table id="dg" style="width: 70%; height: 100%;" class="easyui-layout">
 			</table>
 			<div id="tb" style="padding: 2px 5px;">
+			
+			<shiro:hasPermission name="/user/add">  
 				<a href="javascript:void(0)" onclick="MgrUser.add()"
 					class="easyui-linkbutton" iconCls="icon-add" plain="true">添加</a>
+			</shiro:hasPermission>
+					
+					<shiro:hasPermission name="/user/edit">  
 					 <a
 					id="btn-edit" href="javascript:void(0)" onclick="MgrUser.edit()"
-					class="easyui-linkbutton" iconCls="icon-edit" plain="true">编辑</a> <a
+					class="easyui-linkbutton" iconCls="icon-edit" plain="true">编辑</a>
+					</shiro:hasPermission>
+					
+					<shiro:hasPermission name="/user/delete">  
+					 <a
 					id="btn-delete" href="javascript:void(0)" onclick="MgrUser.delMgrUser()"
 					class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
-					
+					</shiro:hasPermission>
+				
+				<shiro:hasPermission name="/user/changepw">  	
 				<a href="javascript:void(0)" onclick="MgrUser.resetPwd()" class="easyui-linkbutton"
 					iconCls="icon-mini-edit" plain="true">重置密码</a>
+				</shiro:hasPermission>	
+					
+					<shiro:hasPermission name="/user/freezeAccount">  
 					 <a
 					href="javascript:void(0)" onclick="MgrUser.freezeAccount()" class="easyui-linkbutton"
-					iconCls="icon-user-config" plain="true">冻结</a> <a
+					iconCls="icon-user-config" plain="true">冻结</a> 
+					</shiro:hasPermission>
+					
+					<shiro:hasPermission name="/user/unfreeze">  
+					<a
 					href="javascript:void(0)" onclick="MgrUser.unfreeze()" class="easyui-linkbutton"
 					iconCls="icon-recover-deleted-items" plain="true">解除冻结</a> 
+					</shiro:hasPermission>
+					
+					<shiro:hasPermission name="/user/roleAssign">  
 					<a
 					href="javascript:void(0)" onclick="MgrUser.roleAssign()"
 					class="easyui-linkbutton" iconCls="icon-repair" plain="true">角色分配</a>
+					</shiro:hasPermission>
 			</div>
 		</div>
 	</div>

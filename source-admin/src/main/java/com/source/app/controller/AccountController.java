@@ -1,5 +1,7 @@
 package com.source.app.controller;
 
+import java.util.List;
+
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.DisabledAccountException;
 import org.apache.shiro.authc.ExcessiveAttemptsException;
@@ -18,7 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.source.app.shiro.ShiroKit;
 import com.source.base.exception.ApplicationException;
 import com.source.base.exception.StatusCode;
 import com.source.system.exception.SystemError;
@@ -57,25 +61,44 @@ public class AccountController {
         Subject subject = SecurityUtils.getSubject();
         try {
             subject.login(token);
+            List<Integer> roleList = ShiroKit.getUser().getRoleList();
+            if(roleList == null || roleList.size() == 0){
+                ShiroKit.getSubject().logout();
+                throw new ApplicationException(SystemError.LOGIN_FAILED.getCode(), "该用户没有角色，无法登陆");
+            }
+            
         } catch (IncorrectCredentialsException e) {
             //用户名或密码错误
-            throw new ApplicationException(SystemError.LOGIN_FAILED.getCode(), SystemError.LOGIN_FAILED.getMessage());
+            throw new ApplicationException(SystemError.LOGIN_FAILED.getCode(),"用户名或密码错误");
         } catch (ExcessiveAttemptsException e) {
             logger.error("登录失败{}", e.getMessage());//登录失败次数过多
+            throw new ApplicationException(SystemError.LOGIN_FAILED.getCode(),"登录失败次数过多");
+
         } catch (LockedAccountException e) {
             logger.error("登录失败{}", e.getMessage());//帐号已被锁定
+            throw new ApplicationException(SystemError.LOGIN_FAILED.getCode(),"帐号已被锁定");
+
         } catch (DisabledAccountException e) {
             logger.error("登录失败{}", e.getMessage());//帐号已被禁用
+            throw new ApplicationException(SystemError.LOGIN_FAILED.getCode(),"帐号已被禁用");
+
         } catch (ExpiredCredentialsException e) {
             logger.error("登录失败{}", e.getMessage());//帐号已过期
-            throw new ApplicationException(SystemError.LOGIN_FAILED.getCode(), SystemError.LOGIN_FAILED.getMessage());
+            throw new ApplicationException(SystemError.LOGIN_FAILED.getCode(), "帐号已过期");
         } catch (UnknownAccountException e) {
             logger.error("登录失败{}", e.getMessage());//帐号不存在
-            throw new ApplicationException(StatusCode.NOT_FOUND.getCode(), StatusCode.NOT_FOUND.getMessage());
+            throw new ApplicationException(StatusCode.NOT_FOUND.getCode(), "帐号不存在");
         } catch (UnauthorizedException e) {
             logger.error("登录失败{}", e.getMessage());//您没有得到相应的授权
-        }catch (Exception e) {
+            throw new ApplicationException(SystemError.LOGIN_FAILED.getCode(), "您没有得到相应的授权");
+
+        }catch(ApplicationException e){
+            throw new ApplicationException(SystemError.LOGIN_FAILED.getCode(), "该用户没有角色，无法登陆");
+
+        } catch (Exception e) {
             logger.error("登录失败{}", e.getMessage());
+            throw new ApplicationException(SystemError.LOGIN_FAILED.getCode(), "未知错误");
+
         }
 
         return userService.get(username);

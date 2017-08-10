@@ -29,9 +29,15 @@
 							src="${ctxstatic}/img/profile_small.jpg" />
 						</span> <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <span
 							class="clear"> <span class="block m-t-xs"> <strong
+<<<<<<< HEAD
+									class="font-bold"> ${ShiroUser.account} </strong>
+							</span> <span class="text-muted text-xs block">
+									${ShiroUser.roleNames[0]} <b class="caret"> </b>
+=======
 									class="font-bold"> ${user.account} </strong>
 							</span> <span class="text-muted text-xs block">
 									部门：${ShiroUser.deptName} <b class="caret"> </b>
+>>>>>>> branch 'master' of https://github.com/BigerTeam/source.git
 							</span>
 						</span>
 						</a>
@@ -44,8 +50,73 @@
 							<li><a href="${ctx}/account/logout"> 安全退出 </a></li>
 						</ul>
 					</div>
-					<div class="logo-element">source</div>
+					<div class="logo-element">${ShiroUser.account}</div>
 				</li>
+<<<<<<< HEAD
+				
+				
+				<c:forEach items="${titles}" var="title">
+						
+							<c:if test="${empty title.children}">
+									<li>
+									<c:if test="${title.http == true}">
+										 <a class="J_menuItem" href="${title.url}">
+				                            <i class="fa ${title.icon}"></i>
+				                            <span class="nav-label">${title.name}</span>
+				                        </a>
+									</c:if>
+									<c:if test="${title.http == false}">
+										 <a class="J_menuItem" href="${ctx}${title.url}">
+				                            <i class="fa ${title.icon}"></i>
+				                            <span class="nav-label">${title.name}</span>
+				                        </a>
+									</c:if>
+                   			 </li>
+                   			 </c:if>
+						<c:if test="${not empty title.children}">
+			                    <li>
+			                        <a href="#">
+			                            <i class="fa ${title.icon}"></i>
+			                            <span class="nav-label">${title.name}</span>
+			                            <span class="fa arrow"></span>
+			                        </a>
+			                        <ul class="nav nav-second-level">
+                           
+                           	<c:forEach items="${title.children}" var="subTitle">
+                           		<c:if test="${empty subTitle.children}">
+                                    <li>
+                                    <c:if test="${title.http == true}">
+                                        <a class="J_menuItem" href="${subTitle.url}">${subTitle.name}</a>
+                                       </c:if>
+                                       	<c:if test="${title.http == false}">
+                                       	 <a class="J_menuItem" href="${ctxPath}${subTitle.url}">${subTitle.name}</a>
+                                       </c:if>
+                                    </li>
+                              </c:if>
+                              
+                              <c:if test="${not empty subTitle.children}">
+                                    <li>
+                                        <a href="#">${subTitle.name} <span class="fa arrow"></span></a>
+                                        <ul class="nav nav-third-level">
+                                        <c:forEach items="${subTitle.children}" var="thirdTitle">
+                                            <li>
+                                         <c:if test="${title.http == true}">
+                                                <a class="J_menuItem" href="${thirdTitle.url}">${thirdTitle.name}</a>
+                                          </c:if>
+                                          <c:if test="${title.http == false}">
+                                     		    <a class="J_menuItem" href="${ctxPath}${thirdTitle.url}">${thirdTitle.name}</a>
+                                          </c:if>
+                                            </li>
+                                            </c:forEach>
+                                        </ul>
+                                    </li>
+                                </c:if>
+                        	 </c:forEach>
+                        </ul>
+                    </li>
+               </c:if>
+           </c:forEach>
+=======
 				<li><a href="#"> <i class="fa fa-home"> </i> <span
 						class="nav-label"> 主页 </span> <span class="fa arrow"> </span>
 				</a>
@@ -73,6 +144,7 @@
 				<li><a class="J_menuItem" href="layouts.html"> <i
 						class="fa fa-columns"> </i> <span class="nav-label"> 布局 </span>
 				</a></li>
+>>>>>>> branch 'master' of https://github.com/BigerTeam/source.git
 			</ul>
 		</div>
 		</nav>

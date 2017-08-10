@@ -33,6 +33,27 @@
 		<div data-options="region:'center',border:false" style="height: 100%">
 			<div>
 				<div id="tb" style="padding: 2px 5px;" >
+<<<<<<< HEAD
+				
+					<shiro:hasPermission name="/menu/add">  
+					<a href="javascript:void(0)" onclick="Menu.openAddMenu()"
+						class="easyui-linkbutton" iconCls="icon-add" plain="true">添加</a> 
+					</shiro:hasPermission>
+					
+					<shiro:hasPermission name="/menu/menu_edit">  
+						<a
+						id="btn-edit" href="javascript:void(0)"
+						onclick="Menu.openChangeMenu()" class="easyui-linkbutton"
+						iconCls="icon-edit" plain="true">编辑</a>
+					</shiro:hasPermission>	
+						
+					<shiro:hasPermission name="/menu/delete">  
+						 <a id="btn-delete"
+						href="javascript:void(0)" onclick="Menu.delMenu()"
+						class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
+					</shiro:hasPermission>
+				
+=======
 					<a href="javascript:void(0)" onclick="Menu.openAddMenu()"
 						class="easyui-linkbutton" iconCls="icon-add" plain="true">添加</a> <a
 						id="btn-edit" href="javascript:void(0)"
@@ -40,6 +61,7 @@
 						iconCls="icon-edit" plain="true">编辑</a> <a id="btn-delete"
 						href="javascript:void(0)" onclick="Menu.delMenu()"
 						class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
+>>>>>>> branch 'master' of https://github.com/BigerTeam/source.git
 				</div>
 				<table id="menuTable" data-mobile-responsive="true"
 					data-click-to-select="true" >

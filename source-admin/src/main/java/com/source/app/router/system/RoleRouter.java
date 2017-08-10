@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.source.app.constant.factory.ConstantFactory;
+import com.source.app.shiro.ShiroKit;
+import com.source.base.annotation.Permission;
+import com.source.base.common.Const;
 import com.source.base.exception.BizExceptionEnum;
 import com.source.base.exception.BussinessException;
 import com.source.base.router.BaseRouter;
@@ -46,9 +49,11 @@ public class RoleRouter extends BaseRouter {
     /**
      * 跳转到角色分配
      */
+    @Permission(Const.ADMIN_NAME)
     @RequestMapping(value = "/role_assign/{roleId}")
     public String roleAssign(@PathVariable("roleId") Integer roleId, Model model) {
-        if (ToolUtil.isEmpty(roleId)) {
+   
+    	if (ToolUtil.isEmpty(roleId)) {
             throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
         }
         model.addAttribute("roleId", roleId);
