@@ -42,6 +42,7 @@
                     toolbar: "#" + this.toolbarId,//顶部工具条
                     height: this.height,
                 });
+            
             return this;
         },
 

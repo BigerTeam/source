@@ -1,13 +1,13 @@
-﻿/**
+/**
 
- @Name锛� laydate 鏍稿績鏍峰紡
- @Author锛氳搐蹇�
- @Site锛歨ttp://sentsin.com/layui/laydate
+ @Name： laydate 核心样式
+ @Author：贤心
+ @Site：http://sentsin.com/layui/laydate
 
 **/
 
 html{_background-image:url(about:blank); _background-attachment:fixed;}
-.layer-date{display: inline-block!important;vertical-align:text-top;max-width:240px;}
+.layer-date{display: inline-block!important;vertical-align:text-top;}
 .laydate_body .laydate_box, .laydate_body .laydate_box *{margin:0; padding:0;}
 .laydate-icon,
 .laydate-icon-default,

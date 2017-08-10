@@ -3,7 +3,7 @@
 <mapper namespace="com.source.system.mapper.DeptMapper">
 
 	<!-- 开启二级缓存 -->
-	<cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
+<!-- 	<cache type="org.mybatis.caches.ehcache.LoggingEhcache"/> -->
 
 	<!-- 通用查询映射结果 -->
 	<resultMap id="BaseResultMap" type="com.source.system.entity.Dept">
@@ -20,5 +20,27 @@
     <sql id="Base_Column_List">
         id, num, pid, simplename, fullname, tips, version
     </sql>
+    
+    <!-- 获取部门树 -->
+    <select id="tree" resultType="com.source.base.node.ZTreeNode">
+		select id,pid as pId,simplename as name,
+		(
+		CASE
+		WHEN (pId = 0 OR pId IS NULL) THEN
+			'true'
+		ELSE
+			'false'
+		END
+		) as isOpen from sys_dept
+	</select>
+	
+	
+	<select id="list" resultType="map">
+		select * from sys_dept
+		<if test="condition != null and condition != ''">
+			where simplename like CONCAT('%',#{condition},'%') or fullname like CONCAT('%',#{condition},'%')
+		</if>
+		order by num ASC
+	</select>
 
 </mapper>

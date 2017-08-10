@@ -104,7 +104,6 @@
     <build>
         <finalName>source-admin</finalName>
         <plugins>
-
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>

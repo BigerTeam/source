@@ -93,7 +93,12 @@ public class AnnotationHandlerMethodExceptionResolver extends ExceptionHandlerEx
                         //业务服务异常
                         ApplicationException e = (ApplicationException) exception;
                         resultModel = new Response(e.getCode(), e.getMessage());
-                    }else if(exception instanceof DataIntegrityViolationException){
+                    }else if(exception instanceof BussinessException){
+                    	BussinessException e = (BussinessException) exception;
+                        resultModel = new Response(e.getCode(), e.getMessage(),e.getUrlPath());
+
+                    }
+                    else if(exception instanceof DataIntegrityViolationException){
                         //服务器内部错误
                         resultModel = new Response(StatusCode.DATA_INTEGRITY_VIOLATION_EXCEPTION.getCode(), exception.getMessage());
                     } else {

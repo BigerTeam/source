@@ -65,6 +65,7 @@
 //                     captcha: $('#captcha').val().trim()
                 },
                 success: function (data) {
+                	debugger
                     if (data.code == 200) {
                         if (data.body != null) {
                             U.msg('登录成功');

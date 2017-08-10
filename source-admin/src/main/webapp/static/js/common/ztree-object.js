@@ -46,6 +46,7 @@
 				zNodeSeting = this.initSetting();
 			}
 			var zNodes = this.loadNodes();
+			
 			$.fn.zTree.init($("#" + this.id), zNodeSeting, zNodes);
 		},
 		
@@ -62,7 +63,8 @@
 		loadNodes : function() {
 			var zNodes = null;
 			var ajax = new $ax(Feng.ctxPath + this.url, function(data) {
-				zNodes = data;
+				debugger
+				zNodes = data.body;
 			}, function(data) {
 				Feng.error("加载ztree信息失败!");
 			});

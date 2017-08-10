@@ -3,7 +3,7 @@
 <mapper namespace="com.source.system.mapper.UserMapper">
 
 	<!-- 开启二级缓存 -->
-	<cache type="org.mybatis.caches.ehcache.LoggingEhcache"/>
+<!-- 	<cache type="org.mybatis.caches.ehcache.LoggingEhcache"/> -->
 
 	<!-- 通用查询映射结果 -->
 	<resultMap id="BaseResultMap" type="com.source.system.entity.User">
@@ -52,7 +52,48 @@
 		<if test="beginTime != null and beginTime != '' and endTime != null and endTime != ''">
 			and (createTime between CONCAT(#{beginTime},' 00:00:00') and CONCAT(#{endTime},' 23:59:59'))
 		</if>
+            <if test="gender != 0 and gender !=null and gender !=''">
+                and sex = #{gender}
+            </if>
+            <if test="mobile !=null and mobile !=''">
+                and `phone` = #{mobile}
+            </if>
 	</select>
+	
+	<!-- 根据部门获取用户列表 -->
+	<select id="selectUsersByDeptid" resultType="user">
+		select
+		<include refid="Base_Column_List" />
+		from sys_user
+		where status != 3
+		<if test="name != null and name != ''">
+			and (phone like CONCAT('%',#{name},'%')
+			or account like CONCAT('%',#{name},'%')
+			or name like CONCAT('%',#{name},'%'))
+		</if>
+		<if test="deptid != null and deptid != 0">
+			and deptid = #{deptid}
+		</if>
+		<if test="beginTime != null and beginTime != '' and endTime != null and endTime != ''">
+			and (createTime between CONCAT(#{beginTime},' 00:00:00') and CONCAT(#{endTime},' 23:59:59'))
+		</if>
+	</select>
+	
+	
+	 <select id="findUser" resultMap="BaseResultMap" resultType="user">
+        select * from sys_user
+        <where>
+            <if test="request != null and request.username !=null and request.username !=''">
+                username = #{request.username}
+            </if>
+            <if test="request != null and request.gender !=null and request.gender !=''">
+                and gender = #{request.gender}
+            </if>
+            <if test="request != null and request.status !=null and request.status !=''">
+                and `status` = #{request.status}
+            </if>
+        </where>
+    </select>
 
 	<update id="setStatus">
 		update sys_user set status = #{status} where id =

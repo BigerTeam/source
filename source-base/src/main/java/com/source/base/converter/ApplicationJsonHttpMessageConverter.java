@@ -2,7 +2,10 @@ package com.source.base.converter;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.alibaba.fastjson.serializer.ValueFilter;
+import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter4;
 import com.source.base.exception.StatusCode;
 import com.source.base.model.response.IgnoreResponse;
 import com.source.base.model.response.Response;
@@ -36,7 +39,8 @@ public class ApplicationJsonHttpMessageConverter extends FastJsonHttpMessageConv
 
         OutputStream out = outputMessage.getBody();
 
-        JSON.DEFFAULT_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
+//        JSON.DEFFAULT_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
+        JSON.DEFFAULT_DATE_FORMAT = "yyyy-MM-dd";
         //解决@ref
         SerializerFeature feature = SerializerFeature.DisableCircularReferenceDetect;
         //解决null对象
@@ -48,6 +52,30 @@ public class ApplicationJsonHttpMessageConverter extends FastJsonHttpMessageConv
 
         SerializerFeature browserCompatible = SerializerFeature.BrowserCompatible;
 
+        
+//        FastJsonHttpMessageConverter4 converter = new FastJsonHttpMessageConverter4();
+//        FastJsonConfig fastJsonConfig = new FastJsonConfig();
+//        fastJsonConfig.setSerializerFeatures(
+//                SerializerFeature.PrettyFormat,
+//                SerializerFeature.WriteClassName,
+//                SerializerFeature.WriteMapNullValue
+//        );
+//        fastJsonConfig.setDateFormat("yyyy-MM-dd HH:mm:ss");
+//        ValueFilter valueFilter = new ValueFilter() {
+//            public Object process(Object o, String s, Object o1) {
+//                if (null == o1) {
+//                    o1 = "";
+//                }
+//                return o1;
+//            }
+//        };
+//        fastJsonConfig.setSerializeFilters(valueFilter);
+//        converter.setFastJsonConfig(fastJsonConfig);
+//        return converter;
+        
+        
+        
+        
         //响应结果
         String result = "";
         if(obj instanceof IgnoreResponse){

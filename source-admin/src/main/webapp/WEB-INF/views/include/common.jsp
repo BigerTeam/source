@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -21,3 +23,17 @@
 <script src="${ctxstatic}/js/common/tree-table-object.js"></script>
 <script src="${ctxstatic}/js/common/web-upload-object.js"></script>
 <script src="${ctxstatic}/js/common/ztree-object.js"></script>
+<script type="text/javascript">
+        Feng.addCtx("${ctxPath}");
+        Feng.sessionTimeoutRegistry();
+</script>
+<script src="${ctxPath}/static/js/plugins/validate/bootstrapValidator.min.js"></script>
+<script src="${ctxPath}/static/js/plugins/validate/zh_CN.js"></script>
+<script src="${ctxPath}/static/js/plugins/bootstrap-table/bootstrap-table-mobile.min.js"></script>
+<script src="${ctxPath}/static/js/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="${ctxPath}/static/js/plugins/jquery-treegrid/js/jquery.treegrid.min.js"></script>
+<script src="${ctxPath}/static/js/plugins/jquery-treegrid/js/jquery.treegrid.bootstrap3.js"></script>
+<script src="${ctxPath}/static/js/plugins/jquery-treegrid/extension/jquery.treegrid.extension.js"></script>
+<script src="${ctxPath}/static/js/plugins/layer/layer.min.js"></script>
+<script src="${ctxPath}/static/js/plugins/iCheck/icheck.min.js"></script>
+<script src="${ctxPath}/static/js/plugins/layer/laydate/laydate.js"></script>

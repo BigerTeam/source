@@ -23,14 +23,39 @@ public class Response {
     private Object body;
 
     /**
+     * 失败跳转地址
+     */
+    private String failUrl;
+    
+    
+    
+    
+    public String getFailUrl() {
+		return failUrl;
+	}
+
+	public void setFailUrl(String failUrl) {
+		this.failUrl = failUrl;
+	}
+
+	/**
      * 服务器时间
      */
     private Date now;
 
     public Response() {
     }
+    
+    
 
-    public Response(int code, String message) {
+    public Response(int code, String message, String failUrl) {
+		super();
+		this.code = code;
+		this.message = message;
+		this.failUrl = failUrl;
+	}
+
+	public Response(int code, String message) {
         this.code = code;
         this.message = message;
     }

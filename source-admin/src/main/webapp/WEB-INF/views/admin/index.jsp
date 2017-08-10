@@ -69,17 +69,20 @@
 				</a>
 					<ul class="nav nav-second-level">
 						<li>
-							<a class="J_menuItem" href="#">用户管理</a>
+							<a class="J_menuItem" href="${ctx}/user/list">用户管理</a>
 						</li>	
 						<li>
-							<a class="J_menuItem1" href="#">菜单管理</a>
+							<a class="J_menuItem" href="#">菜单管理</a>
 						</li>	
 						<li>
-							<a class="J_menuItem2" href="#">角色管理</a>
+							<a class="J_menuItem" href="http://www.baidu.com">角色管理</a>
 						</li>	
 						<li>
-							<a class="J_menuItem3" href="#">部门管理</a>
+							<a class="J_menuItem" href="${ctx}/dept/list">部门管理</a>
 						</li>	
+						<li>
+							<a class="J_menuItem" href="${ctx}/druid/sql.html">监控系统</a>
+						</li>
 					</ul>
 				</li>
 			

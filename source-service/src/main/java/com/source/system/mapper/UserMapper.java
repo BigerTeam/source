@@ -1,13 +1,14 @@
 package com.source.system.mapper;
 
-import com.source.system.entity.User;
-
 import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.baomidou.mybatisplus.plugins.pagination.Pagination;
+import com.source.system.entity.User;
+import com.source.system.model.request.UserRequest;
 
 /**
  * <p>
@@ -40,7 +41,7 @@ public interface UserMapper extends BaseMapper<User> {
      *
      * @return
      */
-    List<Map<String, Object>> selectUsers(@Param("name") String name, @Param("beginTime") String beginTime, @Param("endTime") String endTime, @Param("deptid") Integer deptid);
+    List<Map<String, Object>> selectUsers(Pagination page,@Param("name") String name,@Param("gender") int gender,@Param("mobile") String mobile, @Param("beginTime") String beginTime, @Param("endTime") String endTime, @Param("deptid") Integer deptid);
 
     /**
      * 设置用户的角色
@@ -57,4 +58,20 @@ public interface UserMapper extends BaseMapper<User> {
      */
     User getByAccount(@Param("account") String account);
     
+    
+    /**
+     * 根据查询条件获取用户集合
+     * @author zhuyangxu 
+     * @data 2017年8月7日 下午5:26:25
+     * @param name
+     * @param beginTime
+     * @param endTime
+     * @param deptid
+     * @return
+     */
+    List<User> selectUsersByDeptid(Pagination page,@Param("name") String name, @Param("beginTime") String beginTime, @Param("endTime") String endTime, @Param("deptid") Integer deptid);
+ 
+    
+    public List<User> findUser(Pagination page, @Param("request") UserRequest request);
+
 }

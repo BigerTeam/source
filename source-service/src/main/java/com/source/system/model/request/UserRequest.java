@@ -3,6 +3,7 @@ package com.source.system.model.request;
 import java.util.Date;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.source.base.model.request.BaseRequest;
 
@@ -34,6 +35,7 @@ public class UserRequest extends BaseRequest {
     /**
      * 生日
      */
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date birthday;
     /**
      * 性别（1：男 2：女）
