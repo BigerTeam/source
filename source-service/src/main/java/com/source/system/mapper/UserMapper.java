@@ -74,4 +74,6 @@ public interface UserMapper extends BaseMapper<User> {
     
     public List<User> findUser(Pagination page, @Param("request") UserRequest request);
 
+    
+
 }

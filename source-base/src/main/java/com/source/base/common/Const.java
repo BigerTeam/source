@@ -8,6 +8,9 @@ public interface Const {
     /** session中存放的用户key*/
     public final static String SESSION_USER = "user";
     
+    
+    public final static String SESSION_ShiroUSER = "ShiroUser";
+
     /**
      * 系统默认的管理员密码
      */

@@ -24,7 +24,115 @@ public class Convert {
 		// 静态类不可实例化
 	}
 
+	/**
+	 * 强制转换类型
+	 * 
+	 * @param clazz 被转换成的类型
+	 * @param value 需要转换的对象
+	 * @return 转换后的对象
+	 */
+	public static Object parse(Class<?> clazz, Object value) {
+		try {
+			if (clazz.isAssignableFrom(String.class)) {
+				// ----2016-12-19---zhuangqian----防止beetlsql对空字符串不检测导致无法入库的问题----
+				if (StrKit.isBlank(String.valueOf(value)))
+					return " ";
+				else
+					return String.valueOf(value);
+			}
+			return clazz.cast(value);
+		} catch (ClassCastException e) {
+			String valueStr = String.valueOf(value);
 
+			Object result = parseBasic(clazz, valueStr);
+			if (result != null) {
+				return result;
+			}
+
+			if (Date.class.isAssignableFrom(clazz)) {
+				// 判断标准日期
+				// ----2016-11-24---zhuangqian----需要加toDate(),不然beetlsql转换date类型的时候会报错----
+				return DateTimeKit.parse(valueStr).toDate();
+			} else if (clazz == BigInteger.class) {
+				// 数学计算数字
+				return new BigInteger(valueStr);
+			} else if (clazz == BigDecimal.class) {
+				// 数学计算数字
+				return new BigDecimal(valueStr);
+			} else if (clazz == byte[].class) {
+				// 流，由于有字符编码问题，在此使用系统默认
+				return valueStr.getBytes();
+			}
+			// 未找到可转换的类型，返回原值
+			return (StrKit.isBlank(valueStr)) ? null : value;
+		}
+	}
+
+	/**
+	 * 转换基本类型<br>
+	 * 将字符串转换为原始类型或包装类型
+	 * 
+	 * @param clazz 转换到的类，可以是原始类型类，也可以是包装类型类
+	 * @param valueStr 被转换的字符串
+	 * @return 转换后的对象，如果非基本类型，返回null
+	 */
+	public static Object parseBasic(Class<?> clazz, String valueStr) {
+		if (null == clazz || null == valueStr) {
+			return null;
+		}
+
+		if (StrKit.isBlank(valueStr)) return null;
+		
+		BasicType basicType = null;
+		try {
+			basicType = BasicType.valueOf(clazz.getSimpleName().toUpperCase());
+		} catch (Exception e) {
+			// 非基本类型数据
+			return null;
+		}
+
+		switch (basicType) {
+			case BYTE:
+				if (clazz == byte.class) {
+					return Byte.parseByte(valueStr);
+				}
+				return Byte.valueOf(valueStr);
+			case SHORT:
+				if (clazz == short.class) {
+					return Short.parseShort(valueStr);
+				}
+				return Short.valueOf(valueStr);
+			case INT:
+				return Integer.parseInt(valueStr);
+			case INTEGER:
+				return Integer.valueOf(valueStr);
+			case LONG:
+				if (clazz == long.class) {
+					return new BigDecimal(valueStr).longValue();
+				}
+				return Long.valueOf(valueStr);
+			case DOUBLE:
+				if (clazz == double.class) {
+					return new BigDecimal(valueStr).doubleValue();
+				}
+			case FLOAT:
+				if (clazz == float.class) {
+					return Float.parseFloat(valueStr);
+				}
+				return Float.valueOf(valueStr);
+			case BOOLEAN:
+				if (clazz == boolean.class) {
+					return Boolean.parseBoolean(valueStr);
+				}
+				return Boolean.valueOf(valueStr);
+			case CHAR:
+				return valueStr.charAt(0);
+			case CHARACTER:
+				return Character.valueOf(valueStr.charAt(0));
+			default:
+				return null;
+		}
+	}
 
 	/**
 	 * 转换为字符串<br>

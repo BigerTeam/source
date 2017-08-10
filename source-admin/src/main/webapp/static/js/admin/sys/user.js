@@ -207,10 +207,10 @@ MgrUser.roleAssign = function () {
         var index = layer.open({
             type: 2,
             title: '角色分配',
-            area: ['300px', '400px'], //宽高
+            area: ['280px', '490px'], //宽高
             fix: false, //不固定
             maxmin: true,
-            content: Feng.ctxPath + '/system/user/role_assign/' + this.seItem.id
+            content: Feng.ctxPath + '/user/role_assign/' + this.seItem.id
         });
         this.layerIndex = index;
     }

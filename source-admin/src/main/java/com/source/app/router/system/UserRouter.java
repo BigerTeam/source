@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.source.app.constant.factory.ConstantFactory;
+import com.source.app.shiro.ShiroKit;
 import com.source.base.exception.BizExceptionEnum;
 import com.source.base.exception.BussinessException;
 import com.source.base.router.BaseRouter;
@@ -31,6 +32,45 @@ public class UserRouter extends BaseRouter {
 		return "/admin/sys/user";
 	}
 
+	 /**
+     * 跳转到角色分配页面
+     */
+    @RequestMapping("/role_assign/{userId}")
+    public String roleAssign(@PathVariable Integer userId, Model model) {
+        if (ToolUtil.isEmpty(userId)) {
+            throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+        }
+        User user = usreService.selectById(userId);
+        model.addAttribute("userId", userId);
+        model.addAttribute("userAccount", user.getAccount());
+        return getPrefix() + "/user_roleassign";
+    }
+	
+    
+    /**
+     * 跳转到查看用户详情页面
+     */
+    @RequestMapping("/user_info")
+    public String userInfo(Model model) {
+        Long userId = ShiroKit.getUser().getId();
+        if (ToolUtil.isEmpty(userId)) {
+            throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+        }
+        User user = usreService.selectById(userId);
+        model.addAttribute(user);
+        model.addAttribute("roleName", ConstantFactory.me().getRoleName(user.getRoleid()));
+        model.addAttribute("deptName", ConstantFactory.me().getDeptName(user.getDeptid()));
+//        LogObjectHolder.me().set(user);
+        return  VIEW;
+    }
+
+    /**
+     * 跳转到修改密码界面
+     */
+    @RequestMapping("/user_chpwd")
+    public String chPwd() {
+        return getPrefix() + "/user_chpwd";
+    }
 	
 	/**
 	 * 重新写的编辑方法

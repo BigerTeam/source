@@ -37,6 +37,8 @@
 <script src="${ctxPath}/static/js/plugins/webuploader/webuploader.min.js"></script>
 <script src="${ctxstatic}/js/plugins/jquery-treegrid/extension/jquery.treegrid.extension.js"></script>
 <script src="${ctxstatic}/js/common/ajax-object.js"></script>
+<script src="${ctxstatic}/js/common/bootstrap-table-object.js"></script>
+
 <script src="${ctxstatic}/js/common/tree-table-object.js"></script>
 <script src="${ctxstatic}/js/common/web-upload-object.js"></script>
 <script src="${ctxstatic}/js/common/ztree-object.js"></script>

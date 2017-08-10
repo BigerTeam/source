@@ -17,9 +17,6 @@ import com.source.base.router.BaseRouter;
 @RequestMapping(value = "{admin.path}")
 public class AdminRouter extends BaseRouter{
 
-//    @Autowired
-//    private IResourceService resourceService;
-
     @Override
     protected String getPrefix() {
         return "/admin";

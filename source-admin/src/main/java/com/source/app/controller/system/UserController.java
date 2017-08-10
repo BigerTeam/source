@@ -23,7 +23,6 @@ import com.source.app.shiro.ShiroKit;
 import com.source.app.shiro.ShiroUser;
 import com.source.app.state.ManagerStatus;
 import com.source.app.wrapper.system.UserWarpper;
-import com.source.base.annotation.Permission;
 import com.source.base.common.Const;
 import com.source.base.exception.BizExceptionEnum;
 import com.source.base.exception.BussinessException;
@@ -67,7 +66,7 @@ public class UserController extends AdminBaseController{
     /**
      * 修改当前用户的密码
      */
-    @RequestMapping("/changePwd")
+    @RequestMapping("/changepw")
     @ResponseBody
     public Object changePwd(@RequestParam String oldPwd, @RequestParam String newPwd, @RequestParam String rePwd) {
         if (!newPwd.equals(rePwd)) {
@@ -211,4 +210,23 @@ public class UserController extends AdminBaseController{
         return SUCCESS_TIP;
     }
     
+    /**
+     * 分配角色
+     * @param userId
+     * @param roleIds
+     * @return
+     */
+    @RequestMapping("/setRole")
+    @ResponseBody
+    public Tip setRole(@RequestParam("userId") Integer userId, @RequestParam("roleIds") String roleIds) {
+        if (ToolUtil.isOneEmpty(userId, roleIds)) {
+            throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
+        }
+        //不能修改超级管理员
+        if (userId.equals(Const.ADMIN_ID)) {
+            throw new BussinessException(BizExceptionEnum.CANT_CHANGE_ADMIN);
+        }
+        this.userService.setRoles(userId, roleIds);
+        return SUCCESS_TIP;
+    }
 }

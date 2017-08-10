@@ -38,5 +38,15 @@ public interface IUserService extends IService<User> {
 
 	 public void setStatus(Long userId, int code);
 
+	 
+	/**
+	 * 设置角色
+	 * @author zhuyangxu 
+	 * @data 2017年8月10日 下午9:28:41
+	 * @param userId
+	 * @param roleIds
+	 */
+	void setRoles(Integer userId, String roleIds);
+
 	
 }

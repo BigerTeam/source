@@ -41,6 +41,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
         User user = shiroFactory.user(token.getUsername());
         initSession(user);
         ShiroUser shiroUser = shiroFactory.shiroUser(user);
+        initSessionShiroUser(shiroUser);
         SimpleAuthenticationInfo info = shiroFactory.info(shiroUser, user, super.getName());
         return info;
     }
@@ -55,6 +56,12 @@ public class ShiroDbRealm extends AuthorizingRealm {
         UserResponse userResponse = BeanCopier.copy(user, UserResponse.class);
 
         session.setAttribute(Const.SESSION_USER, userResponse);
+    }
+    
+    private void initSessionShiroUser(ShiroUser user) {
+        Session session = SecurityUtils.getSubject().getSession();
+        session.setTimeout(-1000l);// timeout:-1000ms 永不超时
+        session.setAttribute(Const.SESSION_ShiroUSER, user);
     }
     
 

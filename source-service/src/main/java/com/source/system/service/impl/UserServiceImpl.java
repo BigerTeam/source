@@ -77,6 +77,13 @@ public class UserServiceImpl  extends BaseService<UserMapper, User> implements I
 		user.setStatus(code);
 		userMapper.updateById(user);
 	}
+
+
+
+	@Override
+	public void setRoles(Integer userId, String roleIds) {
+		userMapper.setRoles(userId, roleIds);
+	}
 	
 	
 }

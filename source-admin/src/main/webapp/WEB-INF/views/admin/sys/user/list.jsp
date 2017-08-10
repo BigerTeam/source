@@ -110,7 +110,7 @@
 					href="javascript:void(0)" onclick="MgrUser.unfreeze()" class="easyui-linkbutton"
 					iconCls="icon-recover-deleted-items" plain="true">解除冻结</a> 
 					<a
-					href="javascript:void(0)" onclick="getRoles()"
+					href="javascript:void(0)" onclick="MgrUser.roleAssign()"
 					class="easyui-linkbutton" iconCls="icon-repair" plain="true">角色分配</a>
 			</div>
 		</div>

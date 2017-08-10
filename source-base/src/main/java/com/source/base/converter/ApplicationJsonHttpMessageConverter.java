@@ -7,6 +7,7 @@ import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter4;
 import com.source.base.exception.StatusCode;
+import com.source.base.model.response.IgnoreListResponse;
 import com.source.base.model.response.IgnoreResponse;
 import com.source.base.model.response.Response;
 
@@ -53,33 +54,12 @@ public class ApplicationJsonHttpMessageConverter extends FastJsonHttpMessageConv
         SerializerFeature browserCompatible = SerializerFeature.BrowserCompatible;
 
         
-//        FastJsonHttpMessageConverter4 converter = new FastJsonHttpMessageConverter4();
-//        FastJsonConfig fastJsonConfig = new FastJsonConfig();
-//        fastJsonConfig.setSerializerFeatures(
-//                SerializerFeature.PrettyFormat,
-//                SerializerFeature.WriteClassName,
-//                SerializerFeature.WriteMapNullValue
-//        );
-//        fastJsonConfig.setDateFormat("yyyy-MM-dd HH:mm:ss");
-//        ValueFilter valueFilter = new ValueFilter() {
-//            public Object process(Object o, String s, Object o1) {
-//                if (null == o1) {
-//                    o1 = "";
-//                }
-//                return o1;
-//            }
-//        };
-//        fastJsonConfig.setSerializeFilters(valueFilter);
-//        converter.setFastJsonConfig(fastJsonConfig);
-//        return converter;
-        
-        
-        
-        
         //响应结果
         String result = "";
         if(obj instanceof IgnoreResponse){
             result = JSON.toJSONString(obj, feature, writeMapNullValue, writeNullStringAsEmpty, writeDateUseDateFormat);
+        }else if(obj instanceof IgnoreListResponse){
+            result = JSON.toJSONString(((IgnoreListResponse) obj).getObject(), feature, writeMapNullValue, writeNullStringAsEmpty, writeDateUseDateFormat);
         }else if(obj instanceof List){
             List list = (List) obj;
             if (list != null && !list.isEmpty() && list.get(0) instanceof IgnoreResponse) {

@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.source.app.controller.AdminBaseController;
 import com.source.app.wrapper.system.DeptWarpper;
-import com.source.base.annotation.Permission;
 import com.source.base.exception.BizExceptionEnum;
 import com.source.base.exception.BussinessException;
 import com.source.base.node.ZTreeNode;
