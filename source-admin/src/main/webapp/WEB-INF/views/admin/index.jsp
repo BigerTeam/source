@@ -29,15 +29,9 @@
 							src="${ctxstatic}/img/profile_small.jpg" />
 						</span> <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <span
 							class="clear"> <span class="block m-t-xs"> <strong
-<<<<<<< HEAD
 									class="font-bold"> ${ShiroUser.account} </strong>
 							</span> <span class="text-muted text-xs block">
 									${ShiroUser.roleNames[0]} <b class="caret"> </b>
-=======
-									class="font-bold"> ${user.account} </strong>
-							</span> <span class="text-muted text-xs block">
-									部门：${ShiroUser.deptName} <b class="caret"> </b>
->>>>>>> branch 'master' of https://github.com/BigerTeam/source.git
 							</span>
 						</span>
 						</a>
@@ -52,7 +46,6 @@
 					</div>
 					<div class="logo-element">${ShiroUser.account}</div>
 				</li>
-<<<<<<< HEAD
 				
 				
 				<c:forEach items="${titles}" var="title">
@@ -116,35 +109,6 @@
                     </li>
                </c:if>
            </c:forEach>
-=======
-				<li><a href="#"> <i class="fa fa-home"> </i> <span
-						class="nav-label"> 主页 </span> <span class="fa arrow"> </span>
-				</a>
-					<ul class="nav nav-second-level">
-						<li><a class="J_menuItem" href="${ctx}/train/index"> 火车票
-						</a></li>
-						<li><a href="index_v5.html" target="_blank"> 主页示例五 </a></li>
-					</ul></li>
-				<li>
-				<li><a href="#"> <i class="fa fa-home"> </i> <span
-						class="nav-label"> 系统管理 </span> <span class="fa arrow"> </span>
-				</a>
-					<ul class="nav nav-second-level">
-						<li><a class="J_menuItem" href="${ctx}/user/list"> 用户管理 </a>
-						</li>
-						<li><a class="J_menuItem" href="${ctx}/menu/list"> 菜单管理 </a>
-						</li>
-						<li><a class="J_menuItem" href="${ctx}/role/list"> 角色管理 </a>
-						</li>
-						<li><a class="J_menuItem" href="${ctx}/dept/list"> 部门管理 </a>
-						</li>
-						<li><a class="J_menuItem" href="${ctx}/druid/sql.html">
-								监控系统 </a></li>
-					</ul></li>
-				<li><a class="J_menuItem" href="layouts.html"> <i
-						class="fa fa-columns"> </i> <span class="nav-label"> 布局 </span>
-				</a></li>
->>>>>>> branch 'master' of https://github.com/BigerTeam/source.git
 			</ul>
 		</div>
 		</nav>

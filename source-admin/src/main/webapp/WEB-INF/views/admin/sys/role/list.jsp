@@ -35,7 +35,6 @@
 		<div data-options="region:'center',border:false" style="height: 100%">
 			<div>
 				<div id="tb" style="padding: 2px 5px;" >
-<<<<<<< HEAD
 				
 			<shiro:hasPermission name="/role/add">  
 					<a href="javascript:void(0)" onclick="Role.openAddRole()"
@@ -59,19 +58,6 @@
 						class="easyui-linkbutton" iconCls="icon-remove" plain="true">权限配置</a>
 				</shiro:hasPermission>
 				
-=======
-					<a href="javascript:void(0)" onclick="Role.openAddRole()"
-						class="easyui-linkbutton" iconCls="icon-add" plain="true">添加</a> <a
-						id="btn-edit" href="javascript:void(0)"
-						onclick="Role.openChangeRole()" class="easyui-linkbutton"
-						iconCls="icon-edit" plain="true">编辑</a> 
-						<a id="btn-delete"
-						href="javascript:void(0)" onclick="Role.delRole()"
-						class="easyui-linkbutton" iconCls="icon-remove" plain="true">删除</a>
-						<a id="btn-assign"
-						href="javascript:void(0)" onclick="Role.assign()"
-						class="easyui-linkbutton" iconCls="icon-remove" plain="true">权限配置</a>
->>>>>>> branch 'master' of https://github.com/BigerTeam/source.git
 				</div>
 				<table id="roleTable" data-mobile-responsive="true"
 					data-click-to-select="true" >
