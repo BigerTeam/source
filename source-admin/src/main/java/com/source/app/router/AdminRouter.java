@@ -64,7 +64,8 @@ public class AdminRouter extends BaseRouter{
          if (!subject.isAuthenticated() && !subject.isRemembered()) {//已登录
              return new ModelAndView("/admin/login");
          }
-       //获取菜单列表
+         
+         //获取菜单列表
          List<Integer> roleList = ShiroKit.getUser().getRoleList();
          List<MenuNode> menus = menuService.getMenusByRoleIds(roleList);
          List<MenuNode> titles = MenuNode.buildTitle(menus);

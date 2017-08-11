@@ -26,10 +26,10 @@
 				<li class="nav-header">
 					<div class="dropdown profile-element">
 						<span>
-						<c:if test="${empty user.avatar}">
+						<c:if test="${empty avatar}">
 						            	<img class="img-circle" height="60" width="60" src="${ctxPath}/static/img/a1.jpg">
 					     </c:if>
-				         <c:if test="${not empty user.avatar}">
+				         <c:if test="${not empty avatar}">
 						        <img class="img-circle"   height="60" width="60"  src="${ctxPath}/system/user/kaptcha/${avatar}">
 			             </c:if>
 						</span> <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <span

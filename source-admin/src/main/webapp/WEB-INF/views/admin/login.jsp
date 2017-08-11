@@ -15,7 +15,7 @@
 <div class="middle-box text-center loginscreen  animated fadeInDown">
     <div style="padding: 100px 0px;">
         <div>
-            <h2 class="logo-name">s_e</h2>
+            <h2 class="logo-name">xS</h2>
         </div>
         <h3>欢迎使用 source 管理系统</h3>
         <br/>
