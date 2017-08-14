@@ -67,9 +67,19 @@
 					<td id="secretStr" secretStr="${train.secretStr}"><c:if
 							test="${empty train.secretStr }">
 							${train.buttonTextInfo}
-						</c:if> <c:if test="${not empty train.secretStr}">
+						</c:if> 
+						<c:if test="${not empty train.secretStr}">
 							<input type="button" class="btn btn-default" role="button"
-								onclick="submitOrderRequest('${train.secretStr}','${train.startTime }','${train.trainNo}','${train.fromStationTelecode}','${train.toStationTelecode}','${train.ypInfo}','${train.fromStationName}','${train.toStationName}','${train.location_code}','${train.stationTrainCode}')"
+								onclick="submitOrderRequest('${train.secretStr}',
+								'${train.startTime }',
+								'${train.trainNo}',
+								'${train.fromStationTelecode}',
+								'${train.toStationTelecode}',
+								'${train.ypInfo}',
+								'${train.fromStationName}',
+								'${train.toStationName}',
+								'${train.location_code}',
+								'${train.stationTrainCode}')"
 								value="${train.buttonTextInfo}">
 						</c:if></td>
 				</tr>

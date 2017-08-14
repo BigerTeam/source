@@ -25,6 +25,8 @@ public class ConfigListener implements ServletContextListener {
         // 项目路径
         conf.put("realPath", sc.getRealPath("/").replaceFirst("/", ""));
         conf.put("contextPath", sc.getContextPath());
+        
+      
     }
 
 }

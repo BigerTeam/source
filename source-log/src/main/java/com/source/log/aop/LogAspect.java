@@ -10,9 +10,6 @@ import com.source.log.annotation.Log;
 
 /**
  * 日志切面处理类
- *
- * @author Hao
- * @create 2017-03-29
  */
 @Aspect
 public class LogAspect {

@@ -34,6 +34,7 @@ import com.source.base.exception.BizExceptionEnum;
 import com.source.base.exception.BussinessException;
 import com.source.base.model.vo.DataGrid;
 import com.source.base.tips.Tip;
+import com.source.log.annotation.Log;
 import com.source.system.entity.User;
 import com.source.system.model.request.UserRequest;
 import com.source.system.service.IUserService;
@@ -63,6 +64,7 @@ public class UserController extends AdminBaseController {
 	 * @return
 	 */
 	@RequestMapping(value = "/pages", method = RequestMethod.GET)
+    @Log(module="用户模块",description="获取用户列表")
 	@ResponseBody
 	public DataGrid getPages(UserRequest request) {
 		Page<Map<String, Object>> page = userService.getUsersPage(getPagination(request), request);
@@ -74,6 +76,7 @@ public class UserController extends AdminBaseController {
 	 * 修改当前用户的密码
 	 */
 	@RequestMapping("/changepw")
+    @Log(module="用户模块",description="修改用户密码")
 	@ResponseBody
 	public Object changePwd(@RequestParam String oldPwd, @RequestParam String newPwd, @RequestParam String rePwd) {
 		if (!newPwd.equals(rePwd)) {
@@ -96,6 +99,7 @@ public class UserController extends AdminBaseController {
 	 * 添加管理员
 	 */
 	@RequestMapping("/add")
+    @Log(module="用户模块",description="添加管理员")
 	@ResponseBody
 	public Tip add(@Valid UserRequest userRequest, BindingResult result) {
 		if (result.hasErrors()) {
@@ -126,6 +130,7 @@ public class UserController extends AdminBaseController {
 	 * @throws NoPermissionException
 	 */
 	@ResponseBody
+    @Log(module="用户模块",description="修改管理员")
 	@RequestMapping("/edit")
 	public Tip edit(@Valid UserRequest user, BindingResult result) throws NoPermissionException {
 		if (result.hasErrors()) {
@@ -149,6 +154,7 @@ public class UserController extends AdminBaseController {
 	 * 删除管理员（逻辑删除）
 	 */
 	@RequestMapping("/delete")
+    @Log(module="用户模块",description="删除管理员")
 	@ResponseBody
 	public Tip delete(@RequestParam Long userId) {
 		if (ToolUtil.isEmpty(userId)) {
@@ -157,6 +163,10 @@ public class UserController extends AdminBaseController {
 		// 不能删除超级管理员
 		if (userId.equals(Const.ADMIN_ID)) {
 			throw new BussinessException(BizExceptionEnum.CANT_DELETE_ADMIN);
+		}
+		//自己不能删除自己
+		if(userId.equals(ShiroKit.getUser().getId())){
+			throw new BussinessException(BizExceptionEnum.CANT_DELETE_USER);
 		}
 		userService.setStatus(userId, ManagerStatus.DELETED.getCode());
 		return SUCCESS_TIP;
@@ -178,6 +188,7 @@ public class UserController extends AdminBaseController {
 	 * 重置管理员的密码
 	 */
 	@RequestMapping("/reset")
+    @Log(module="用户模块",description="重置密码")
 	@ResponseBody
 	public Tip reset(@RequestParam Integer userId) {
 		if (ToolUtil.isEmpty(userId)) {
@@ -194,6 +205,7 @@ public class UserController extends AdminBaseController {
 	 * 冻结用户
 	 */
 	@RequestMapping("/freeze")
+    @Log(module="用户模块",description="冻结账户")
 	@ResponseBody
 	public Tip freeze(@RequestParam Long userId) {
 		if (ToolUtil.isEmpty(userId)) {
@@ -211,6 +223,7 @@ public class UserController extends AdminBaseController {
 	 * 解除冻结用户
 	 */
 	@RequestMapping("/unfreeze")
+    @Log(module="用户模块",description="解除冻结")
 	@ResponseBody
 	public Tip unfreeze(@RequestParam Long userId) {
 		if (ToolUtil.isEmpty(userId)) {
@@ -228,6 +241,7 @@ public class UserController extends AdminBaseController {
 	 * @return
 	 */
 	@RequestMapping("/setRole")
+    @Log(module="用户模块",description="分配角色")
 	@ResponseBody
 	public Tip setRole(@RequestParam("userId") Integer userId, @RequestParam("roleIds") String roleIds) {
 		if (ToolUtil.isOneEmpty(userId, roleIds)) {

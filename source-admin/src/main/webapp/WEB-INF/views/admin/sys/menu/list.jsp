@@ -37,8 +37,7 @@
 					<a href="javascript:void(0)" onclick="Menu.openAddMenu()"
 						class="easyui-linkbutton" iconCls="icon-add" plain="true">添加</a> 
 					</shiro:hasPermission>
-					
-					<shiro:hasPermission name="/menu/menu_edit">  
+					<shiro:hasPermission name="/menu/edit">  
 						<a
 						id="btn-edit" href="javascript:void(0)"
 						onclick="Menu.openChangeMenu()" class="easyui-linkbutton"

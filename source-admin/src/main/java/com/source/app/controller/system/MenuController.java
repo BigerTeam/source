@@ -24,6 +24,7 @@ import com.source.base.exception.BizExceptionEnum;
 import com.source.base.exception.BussinessException;
 import com.source.base.node.ZTreeNode;
 import com.source.base.tips.Tip;
+import com.source.log.annotation.Log;
 import com.source.system.entity.Menu;
 import com.source.system.service.IMenuService;
 import com.source.utils.BeanKit;
@@ -46,6 +47,7 @@ public class MenuController extends AdminBaseController {
 	 * 修该菜单
 	 */
 	@RequestMapping(value = "/edit")
+    @Log(module="菜单模块",description="修改菜单")
 	@ResponseBody
 	public Tip edit(@Valid Menu menu, BindingResult result) {
 		if (result.hasErrors()) {
@@ -61,6 +63,7 @@ public class MenuController extends AdminBaseController {
 	 * 获取菜单列表
 	 */
 	@RequestMapping(value = "/list")
+    @Log(module="菜单模块",description="获取菜单列表")
 	@ResponseBody
 	public Object list(@RequestParam(required = false) String menuName, @RequestParam(required = false) String level) {
 		List<Map<String, Object>> menus = this.menuService.selectMenus(menuName, level);
@@ -71,6 +74,7 @@ public class MenuController extends AdminBaseController {
 	 * 新增菜单
 	 */
 	@RequestMapping(value = "/add")
+    @Log(module="菜单模块",description="新增菜单")
 	@ResponseBody
 	public Tip add(@Valid Menu menu, BindingResult result) {
 		if (result.hasErrors()) {
@@ -88,14 +92,12 @@ public class MenuController extends AdminBaseController {
 	 * 删除菜单
 	 */
 	@RequestMapping(value = "/remove")
+    @Log(module="菜单模块",description="删除菜单")
 	@ResponseBody
 	public Tip remove(@RequestParam Integer menuId) {
 		if (ToolUtil.isEmpty(menuId)) {
 			throw new BussinessException(BizExceptionEnum.REQUEST_NULL);
 		}
-
-		// 缓存菜单的名称
-		// LogObjectHolder.me().set(ConstantFactory.me().getMenuName(menuId));
 		this.menuService.delMenuContainSubMenus(menuId);
 		return SUCCESS_TIP;
 	}

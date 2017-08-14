@@ -20,17 +20,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.source.app.shiro.ShiroKit;
 import com.source.base.exception.ApplicationException;
 import com.source.base.exception.StatusCode;
+import com.source.log.annotation.Log;
 import com.source.system.exception.SystemError;
 import com.source.system.model.response.UserResponse;
 import com.source.system.service.IUserService;
 
+
 /**
- * Function:登录控制器. <br/>
+ * 登录控制器
+ * @author zhuyangxu
+ * @date 2017年8月14日上午10:30:51
  */
 @Controller
 @RequestMapping(value = "/account")
@@ -47,6 +50,7 @@ public class AccountController {
      * @return
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @Log(module="登录模块",description="登录系统")
     @ResponseBody
     public UserResponse login(@RequestParam(value = "username") String username, @RequestParam(value = "password") String password, @RequestParam(value = "captcha", required = false) String captcha) {
         //验证码校验
@@ -109,6 +113,7 @@ public class AccountController {
      *
      * @return
      */
+    @Log(module="登录模块",description="退出系统")
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logout() {
         Subject subject = SecurityUtils.getSubject();

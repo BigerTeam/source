@@ -20,7 +20,6 @@ import org.apache.log4j.Logger;
 import org.apache.shiro.session.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,6 +28,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.source.app.controller.AdminBaseController;
 import com.source.app.shiro.ShiroKit;
 import com.source.train.entity.NewTrain;
 import com.source.train.entity.Passenger;
@@ -40,7 +40,7 @@ import com.source.utils.train.HttpsRequestNg;
 
 @Controller
 @RequestMapping("/train")
-public class TrainController extends BaseController {
+public class TrainController extends AdminBaseController {
 	
 	private final static Logger logger = Logger.getLogger(TrainController.class);
 

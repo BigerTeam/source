@@ -127,8 +127,8 @@
 					<a class="navbar-minimalize minimalize-styl-2 btn btn-primary "
 						href="#"> <i class="fa fa-bars"> </i>
 					</a>
-					<form role="search" class="navbar-form-custom" method="post"
-						action="http://www.zi-han.net/theme/hplus/search_results.html">
+					<form role="search" class="navbar-form-custom" method="GET"
+						action="##">
 						<div class="form-group">
 							<input type="text" placeholder="请输入您需要查找的内容 …"
 								class="form-control" name="top-search" id="top-search">
@@ -259,7 +259,7 @@
 			</div>
 			<div class="footer">
 				<div class="pull-right">
-					&copy; 2017-2025 <a href="http://www.source.net/" target="_blank">
+					&copy; 2017-2025 <a href="#" target="_blank">
 						source </a>
 				</div>
 			</div>

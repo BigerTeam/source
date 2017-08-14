@@ -88,4 +88,18 @@
 				<aop:around method="doPermission" pointcut-ref="permissionPointCut"/>
 		</aop:aspect>
 	</aop:config>
+	
+	
+	<!-- 设置系统日志 -->
+	 <bean id="logAspect" class="com.source.log.aop.LogAspect">
+        <property name="logPoint">
+            <bean class="com.source.system.service.impl.SystemLogService" />
+        </property>
+    </bean>
+    <aop:config>
+        <aop:aspect ref="logAspect">
+            <aop:pointcut id="logPointCut" expression="@annotation(com.source.log.annotation.Log)" />
+            <aop:around pointcut-ref="logPointCut" method="save" />
+        </aop:aspect>
+    </aop:config>
 </beans>

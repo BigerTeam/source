@@ -24,7 +24,7 @@ public interface Const {
     /**
      * 管理员id
      */
-    Integer ADMIN_ID = 1;
+    Long ADMIN_ID = 1L;
 
     /**
      * 超级管理员角色id

@@ -60,9 +60,6 @@
 	
 	
 	
-// 	<#if !login??>
-// 		login();
-// 	</#if>		
 </script>
 <style>
 input.error {
@@ -88,15 +85,14 @@ input.error {
 	
 	
 	<c:if test="${empty username}">
-			<input type="button" id="loginbutton" value="登录" class="btn btn-default" />
+			<input type="hidden" id="loginbutton" value="登录" class="btn btn-default" />
 	</c:if>
 	
 	<c:if test="${not empty username}">
 		<a class="btn btn-link" href="https://kyfw.12306.cn/otn/index/initMy12306" target="_blank">您好,${username}</a>
 	</c:if>
 	</span>
-	<input type="button" id="getPassengers" class="btn btn-default" value="获取联系人"/>
-	<input type="button" id="" class="btn btn-default" value="退出登录"/>
+	<input type="hidden"  id="getPassengers" class="btn btn-default" value="获取联系人"/>
 	<div class="fr"> </div>
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog">
 		<div class="modal-dialog modal-lg">

@@ -1,3 +1,5 @@
+
+
 function login(){
 	dialog.tip.work({type:'loading',  content : '正在努力加载数据，请稍后...', lock : true, timer:0});
 	flag=false;
@@ -15,6 +17,9 @@ function login(){
 		}
 	});
 }
+
+
+
 function checkCode(){
 	dialog.tip.work({type:'loading',  content : '正在努力加载数据，请稍后...', lock : true, timer:0});
 	var code="";
@@ -127,7 +132,25 @@ function queryOrderWaitTime(datas){
 		}
 	});
 }
+
+/**
+ * 提交订单请求
+ * @param secretStr
+ * @param start_time
+ * @param train_no
+ * @param from_station_telecode
+ * @param to_station_telecode
+ * @param yp_info
+ * @param from_station_name
+ * @param to_station_name
+ * @param location_code
+ * @param station_train_code
+ * @returns
+ */
 function submitOrderRequest(secretStr,start_time,train_no,from_station_telecode,to_station_telecode,yp_info,from_station_name,to_station_name,location_code,station_train_code){
+	alert("此版本暂不支持预定功能，请前往12306官网预定！");
+	return;
+	
 	dialog.tip.work({type:'loading',  content : '正在努力加载数据，请稍后...', lock : true, timer:0});
 	var train_date=$("#startDate").val();
 	var data={train_date:train_date,secretStr:secretStr,query_from_station_name:from_station_name,query_to_station_name:to_station_name};

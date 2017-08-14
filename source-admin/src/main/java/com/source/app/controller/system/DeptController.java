@@ -17,6 +17,7 @@ import com.source.app.wrapper.system.DeptWarpper;
 import com.source.base.exception.BizExceptionEnum;
 import com.source.base.exception.BussinessException;
 import com.source.base.node.ZTreeNode;
+import com.source.log.annotation.Log;
 import com.source.system.entity.Dept;
 import com.source.system.mapper.DeptMapper;
 import com.source.utils.ToolUtil;
@@ -53,6 +54,7 @@ public class DeptController extends AdminBaseController {
      * 新增部门
      */
     @RequestMapping(value = "/add")
+    @Log(module="部门模块",description="新增部门")
     @ResponseBody
     public Object add(Dept dept) {
         if (ToolUtil.isOneEmpty(dept, dept.getSimplename())) {
@@ -65,6 +67,7 @@ public class DeptController extends AdminBaseController {
      * 获取所有部门列表
      */
     @RequestMapping(value = "/list")
+    @Log(module="部门模块",description="获取部门列表")
     @ResponseBody
     public Object list(String condition) {
         List<Map<String, Object>> list = this.deptMapper.list(condition);
@@ -83,7 +86,9 @@ public class DeptController extends AdminBaseController {
     /**
      * 修改部门
      */
-    @RequestMapping(value = "/update")
+    @SuppressWarnings("static-access")
+	@RequestMapping(value = "/update")
+    @Log(module="部门模块",description="修改部门")
     @ResponseBody
     public Object update(Dept dept) {
         if (ToolUtil.isEmpty(dept) || dept.getId() == null) {
@@ -97,11 +102,9 @@ public class DeptController extends AdminBaseController {
      * 删除部门
      */
     @RequestMapping(value = "/delete")
+    @Log(module="部门模块",description="删除部门")
     @ResponseBody
     public Object delete(@RequestParam Integer deptId) {
-
-        //缓存被删除的部门名称
-//        LogObjectHolder.me().set(ConstantFactory.me().getDeptName(deptId));
         deptMapper.deleteById(deptId);
         return SUCCESS_TIP;
     }

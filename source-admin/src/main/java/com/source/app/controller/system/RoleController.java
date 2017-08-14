@@ -24,6 +24,7 @@ import com.source.base.exception.BussinessException;
 import com.source.base.model.response.IgnoreListResponse;
 import com.source.base.node.ZTreeNode;
 import com.source.base.tips.Tip;
+import com.source.log.annotation.Log;
 import com.source.system.entity.Role;
 import com.source.system.entity.User;
 import com.source.system.service.IRoleService;
@@ -55,6 +56,7 @@ public class RoleController extends AdminBaseController {
      * 获取角色列表
      */
     @RequestMapping(value = "/list")
+    @Log(module="角色模块",description="获取角色列表")
     @ResponseBody
     public Object list(@RequestParam(required = false) String roleName) {
         List<Map<String, Object>> roles = this.roleService.selectRoles(super.getPara("roleName"));
@@ -65,6 +67,7 @@ public class RoleController extends AdminBaseController {
      * 角色新增
      */
     @RequestMapping(value = "/add")
+    @Log(module="角色模块",description="新增角色")
     @ResponseBody
     public Tip add(@Valid Role role, BindingResult result) {
         if (result.hasErrors()) {
@@ -79,6 +82,7 @@ public class RoleController extends AdminBaseController {
      * 角色修改
      */
     @RequestMapping(value = "/edit")
+    @Log(module="角色模块",description="角色修改")
     @ResponseBody
     public Tip edit(@Valid Role role, BindingResult result) {
         if (result.hasErrors()) {
@@ -95,6 +99,7 @@ public class RoleController extends AdminBaseController {
      * 删除角色
      */
     @RequestMapping(value = "/remove")
+    @Log(module="角色模块",description="删除角色")
     @ResponseBody
     public Tip remove(@RequestParam Integer roleId) {
         if (ToolUtil.isEmpty(roleId)) {
@@ -105,12 +110,7 @@ public class RoleController extends AdminBaseController {
         if(roleId.equals(Const.ADMIN_ROLE_ID)){
             throw new BussinessException(BizExceptionEnum.CANT_DELETE_ADMIN);
         }
-
-        //缓存被删除的角色名称
-//        LogObjectHolder.me().set(ConstantFactory.me().getSingleRoleName(roleId));
-
         this.roleService.delRoleById(roleId);
-
         //删除缓存
         CacheKit.removeAll(Cache.CONSTANT);
         return SUCCESS_TIP;
@@ -133,6 +133,7 @@ public class RoleController extends AdminBaseController {
      * 配置权限
      */
     @RequestMapping("/setAuthority")
+    @Log(module="角色模块",description="配置权限")
     @ResponseBody
     public Tip setAuthority(@RequestParam("roleId") Integer roleId, @RequestParam("ids") String ids) {
         if (ToolUtil.isOneEmpty(roleId)) {

@@ -7,17 +7,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.shiro.session.Session;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
 import com.baomidou.mybatisplus.plugins.Page;
+import com.source.app.shiro.ShiroKit;
 import com.source.app.utils.HttpKit;
 import com.source.base.controller.BaseController;
 import com.source.base.tips.SuccessTip;
 import com.source.base.warpper.BaseControllerWarpper;
 import com.source.utils.FileUtil;
+import com.source.utils.train.HttpRequestNg;
 
 public abstract class AdminBaseController extends BaseController{
 	
@@ -56,12 +59,6 @@ public abstract class AdminBaseController extends BaseController{
 	    }
 
 
-	    /**
-	     * 把service层的分页信息，封装为bootstrap table通用的分页封装
-	     */
-//	    protected <T> PageInfoBT<T> packForBT(Page<T> page) {
-//	        return new PageInfoBT<T>(page);
-//	    }
 
 	    /**
 	     * 包装一个list，让list增加额外属性
@@ -86,9 +83,6 @@ public abstract class AdminBaseController extends BaseController{
 
 	    /**
 	     * 返回前台文件流
-	     *
-	     * @author fengshuonan
-	     * @date 2017年2月28日 下午2:53:19
 	     */
 	    protected ResponseEntity<byte[]> renderFile(String fileName, String filePath) {
 	        byte[] bytes = FileUtil.toByteArray(filePath);
@@ -97,9 +91,6 @@ public abstract class AdminBaseController extends BaseController{
 
 	    /**
 	     * 返回前台文件流
-	     *
-	     * @author fengshuonan
-	     * @date 2017年2月28日 下午2:53:19
 	     */
 	    protected ResponseEntity<byte[]> renderFile(String fileName, byte[] fileBytes) {
 	        String dfileName = null;
@@ -113,4 +104,18 @@ public abstract class AdminBaseController extends BaseController{
 	        headers.setContentDispositionFormData("attachment", dfileName);
 	        return new ResponseEntity<byte[]>(fileBytes, headers, HttpStatus.CREATED);
 	    }
+	    
+	    /**
+	     * 清楚火车票的用户名session
+	     * @author zhuyangxu 
+	     * @data 2017年8月14日 上午9:41:46
+	     */
+	    public void clearSession(){
+			Session session = ShiroKit.getSession();
+			session.removeAttribute("username");
+		}
+		public static HttpRequestNg getHttpClient(HttpServletRequest request){
+			HttpRequestNg httpclient=(HttpRequestNg) request.getAttribute("httpClient");
+			return httpclient;
+		}
 }
